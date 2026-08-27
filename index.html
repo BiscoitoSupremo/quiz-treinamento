@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio da Visita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main id="app" class="app">
+  <div class="shell">
+
+    <!-- /- SESSÃO CABEÇALHO -/ -->
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-logo" src="logo.png" alt="Logo Desafio da Visita">
+        <div class="brandcopy">
+          <strong>Desafio da Visita</strong>
+          <span>Simulação comercial imobiliária</span>
+        </div>
+      </div>
+      <div class="top-status" id="topStatus">Escolha seu time</div>
+    </header>
+
+    <!-- /- TELA 1 - QUE TIME VOCÊ É -/ -->
+    <section class="screen active" id="teamScreen">
+      <div class="screen-head">
+        <div class="eyebrow">Etapa 1</div>
+        <h1>Que time você é?</h1>
+        <p>Escolha sua área. A experiência, as personas e as situações mudam conforme o time selecionado.</p>
+      </div>
+
+      <div class="team-grid">
+        <button class="team-card" type="button" data-team="corretoria">
+          <div class="team-icon">C</div>
+          <div>
+            <span class="team-kicker">Time de</span>
+            <h2>Corretoria</h2>
+            <p>Visita, diagnóstico, objeções, argumentação e fechamento com compradores.</p>
+          </div>
+          <span class="team-arrow">→</span>
+        </button>
+
+        <button class="team-card" type="button" data-team="captacao">
+          <div class="team-icon">CP</div>
+          <div>
+            <span class="team-kicker">Time de</span>
+            <h2>Captação</h2>
+            <p>Proprietários, preço, exclusividade, documentação e estratégia de entrada no mercado.</p>
+          </div>
+          <span class="team-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- /- TELA 2 - ESCOLHA DA PERSONA -/ -->
+    <section class="screen" id="personaScreen">
+      <div class="screen-head persona-heading">
+        <div>
+          <div class="eyebrow">Etapa 2</div>
+          <h1 id="personaTeamTitle">Escolha a persona</h1>
+          <p id="personaTeamDescription"></p>
+        </div>
+        <button class="text-button" type="button" id="changeTeamBtn">← Trocar time</button>
+      </div>
+      <div class="persona-grid" id="personaGrid"></div>
+    </section>
+
+    <!-- /- TELA 3 - INÍCIO DO QUIZ / GAME NOVEL -/ -->
+    <section class="screen" id="gameScreen">
+      <div class="game-layout">
+        <section class="game-main">
+          <div class="persona-strip">
+            <div class="persona-avatar" id="activePersonaInitials"></div>
+            <div class="persona-strip-copy">
+              <span id="activePersonaRole"></span>
+              <strong id="activePersonaName"></strong>
+            </div>
+            <div class="round-counter" id="roundCounter">1 / 5</div>
+          </div>
+
+          <!-- /- SESSÃO NARRATIVA -/ -->
+          <article class="story-card">
+            <div class="story-label" id="storyLabel"></div>
+            <h1 id="storyTitle"></h1>
+            <p class="story-narration" id="storyNarration"></p>
+
+            <div class="dialogue">
+              <div class="dialogue-speaker" id="dialogueSpeaker"></div>
+              <p id="dialogueText"></p>
+            </div>
+
+            <div class="scene-note" id="sceneNote"></div>
+          </article>
+
+          <!-- /- SESSÃO ESCOLHAS -/ -->
+          <section class="choice-section">
+            <div class="choice-head">
+              <div>
+                <span class="mini-label">Sua decisão</span>
+                <h2 id="questionTitle"></h2>
+              </div>
+              <span class="choice-status" id="choiceStatus">Selecione uma resposta.</span>
+            </div>
+
+            <div class="choice-list" id="choiceList"></div>
+
+            <div class="game-actions">
+              <button class="btn secondary" type="button" id="leaveGameBtn">Trocar persona</button>
+              <button class="btn primary" type="button" id="confirmChoiceBtn" disabled>Confirmar escolha</button>
+            </div>
+          </section>
+        </section>
+
+        <!-- /- PAINEL LATERAL -/ -->
+        <aside class="game-side">
+          <section class="side-panel">
+            <div class="side-title">Performance</div>
+            <div class="score-list" id="scoreList"></div>
+          </section>
+
+          <section class="side-panel">
+            <div class="side-title">Contexto da persona</div>
+            <div class="persona-context">
+              <div>
+                <span>Objetivo</span>
+                <strong id="contextGoal"></strong>
+              </div>
+              <div>
+                <span>Principal tensão</span>
+                <strong id="contextTension"></strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="side-panel dark-panel">
+            <div class="side-title light">Leitura da cena</div>
+            <p id="sceneInsight"></p>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <!-- /- TELA 4 - FIM DO QUIZ -/ -->
+    <section class="screen" id="resultScreen">
+      <div class="result-hero">
+        <div class="result-copy">
+          <div class="eyebrow light">Resultado da simulação</div>
+          <h1 id="resultProfileName"></h1>
+          <p id="resultProfileText"></p>
+
+          <div class="result-persona">
+            <span>Persona enfrentada</span>
+            <strong id="resultPersonaName"></strong>
+          </div>
+        </div>
+
+        <div class="result-score">
+          <strong id="resultTotal">0</strong>
+          <span>pontos</span>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <section class="panel result-panel">
+          <div class="section-title">
+            <h2>Por que esse foi o seu resultado?</h2>
+            <p>Cada decisão abaixo mostra sua pontuação, competência e o motivo da avaliação.</p>
+          </div>
+          <div class="history-list" id="historyList"></div>
+        </section>
+
+        <section class="panel result-panel">
+          <div class="section-title">
+            <h2>Leitura das competências</h2>
+            <p>O perfil considera a pontuação total e quais competências apareceram com mais força.</p>
+          </div>
+          <div class="competency-result" id="competencyResult"></div>
+        </section>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn secondary" type="button" id="newPersonaBtn">Escolher outra persona</button>
+        <button class="btn primary" type="button" id="restartSameBtn">Jogar novamente</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
